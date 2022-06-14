@@ -53,7 +53,7 @@ def check_number(number):
         return 'Number can\'t contain duplicates.'
 
     
-
+# should be while loop
 if check_number(user_number) == None:
     
     if user_number_str[0] == number_str[0]:
