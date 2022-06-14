@@ -23,30 +23,36 @@ user_number = input('Enter the number: ')
 
 print(lines)
 
-# check if does not start with zero
-if user_number.startswith('0'):
-    print('Number can\'t start with 0.')
+def check_number(user_number):
+    # check if does not start with zero
+    if user_number.startswith('0'):
+        return 'Number can\'t start with 0.'
 
-# check if user number has 4 digit
-elif int(user_number) not in range(1111, 9999):
-    print('Number must have 4 digits.')
+    # check if user number has 4 digit
+    if int(user_number) not in range(1111, 9999):
+        return 'Number must have 4 digits.'
 
-# check for duplicates
-duplicates = []
+    # check for duplicates
+    duplicates = []
 
-for digits in user_number:
+    for digits in user_number:
 
-    if user_number.count(digits) > 1:
+        if user_number.count(digits) > 1:
         
-        duplicates.append(digits)
+            duplicates.append(digits)
 
-print(duplicates)
 
-if not duplicates:
-    pass 
+    if not duplicates:
+        pass 
+
+    else:
+        return 'Number can\'t contain duplicates.'
+
+    
+
+if check_number(user_number) == None:
+    print('Yes')
 
 else:
-    print('Number can\'t contain duplicates.')
-
-
+    print('No no no ')
 
