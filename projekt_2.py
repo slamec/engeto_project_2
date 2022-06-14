@@ -8,10 +8,13 @@ discord: Miro#8969
 
 from os import dup
 import random
-from re import U 
+ 
 
 lines = 50 * '-'
 number = random.randint(1111, 9999)
+number_str = str(number)
+
+print(number) # control needs to be deleted
 
 print('Hi there!')
 print(lines)
@@ -20,6 +23,7 @@ print('Let\'s play a bulls and cows game.')
 print(lines)
 
 user_number = input('Enter the number: ')
+user_number_str = str(user_number)
 
 print(lines)
 
@@ -51,7 +55,9 @@ def check_number(number):
     
 
 if check_number(user_number) == None:
-    print('Yes')
+    
+    if user_number_str[0] == number_str[0]:
+        print('good job')
 
 else:
     print(check_number(user_number))
