@@ -31,7 +31,7 @@ if user_number.startswith('0'):
 elif int(user_number) not in range(1111, 9999):
     print('Number must have 4 digits.')
 
-
+# check for duplicates
 duplicates = []
 
 for digits in user_number:
@@ -42,7 +42,11 @@ for digits in user_number:
 
 print(duplicates)
 
-if user_number.split() in duplicates:
-    print('xxx')
+if not duplicates:
+    pass 
+
+else:
+    print('Number can\'t contain duplicates.')
+
 
 
