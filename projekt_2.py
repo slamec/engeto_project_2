@@ -54,5 +54,5 @@ if check_number(user_number) == None:
     print('Yes')
 
 else:
-    print('No no no ')
+    print(check_number(user_number))
 
