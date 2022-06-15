@@ -11,10 +11,13 @@ import random
  
 
 lines = 50 * '-'
-number = random.randint(1111, 9999)
-number_str = str(number)
 
-print(number) # control needs to be deleted
+game_on = True
+
+number = random.sample(range(10), 4)
+number_str = ''.join(map(str, number))
+
+print(number_str) # control needs to be deleted
 
 print('Hi there!')
 print(lines)
@@ -52,13 +55,6 @@ def check_number(number):
     else:
         return 'Number can\'t contain duplicates.'
 
-    
-# should be while loop
-if check_number(user_number) == None:
-    
-    if user_number_str[0] == number_str[0]:
-        print('good job')
 
-else:
-    print(check_number(user_number))
+    
 
