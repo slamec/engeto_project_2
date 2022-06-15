@@ -25,10 +25,6 @@ print('I\'ve generated a random 4 digit number for you.')
 print('Let\'s play a bulls and cows game.')
 print(lines)
 
-user_number = input('Enter the number: ')
-user_number_str = str(user_number)
-
-print(lines)
 
 def check_number(number):
     # check if does not start with zero
@@ -55,6 +51,18 @@ def check_number(number):
     else:
         return 'Number can\'t contain duplicates.'
 
+while game_on:
 
+    user_number = input('Enter the number: ')
+    user_number_str = str(user_number)
+
+    print(lines)
+    
+    if check_number(user_number) == None: 
+        pass
     
 
+
+    else:
+        print(check_number(user_number))
+        game_on = False
