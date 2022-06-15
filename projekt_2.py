@@ -57,11 +57,39 @@ while game_on:
     user_number_str = str(user_number)
 
     print(lines)
-    
-    if check_number(user_number) == None: 
-        pass
-    
 
+    # guessed place and number
+    bull = 0 
+    bulls = 0 
+
+    # guessed number
+    cow = 0
+    cows = 0
+    
+    # check if the inserted number is correct
+    if check_number(user_number) == None: 
+        
+        if user_number_str[0] == number_str[0]:
+            
+            bull += 1
+
+            if user_number_str[1] == number_str[1]:
+
+                bull += 1
+
+                bulls = bull 
+
+            elif user_number_str[2] == number_str[2]:
+
+                bulls += 1 
+
+            elif user_number_str[3] == number_str[3]:
+
+                bulls += 1 
+
+
+    
+        print(f'bull{bull}, bulls{bulls}')
 
     else:
         print(check_number(user_number))
