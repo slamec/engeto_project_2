@@ -6,17 +6,19 @@ discord: Miro#8969
 
 """
 
-from itertools import count
-from os import dup
+
 import random
-import re 
 
 lines = 50 * '-'
 
 game_on = True
 
-# needs to generate number withou 0 in the beginning
-number = random.sample(range(10), 4)
+number = [0]
+
+# avoid zero on the beginning
+while number[0] == 0:
+    number = random.sample(range(10), 4)
+
 number_str = ''.join(map(str, number))
 
 quesses = 0 
