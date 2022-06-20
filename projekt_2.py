@@ -15,19 +15,9 @@ lines = 50 * '-'
 
 game_on = True
 
-def generate_number():
-    """Generate random 4 digit number"""
-    number = random.sample(range(10), 4)
-
-    return number
-
-# stills returns 0
-while generate_number()[0] != 0:
-
-    number_str = ''.join(map(str, generate_number()))
-
-else:
-    generate_number()
+# needs to generate number withou 0 in the beginning
+number = random.sample(range(10), 4)
+number_str = ''.join(map(str, number))
 
 quesses = 0 
 
@@ -49,6 +39,7 @@ def check_number(number):
         return 'Number can\'t start with 0.'
 
     # check if user number has 4 digit
+
     if int(number) not in range(1111, 9999):
         return 'Number must have 4 digits.'
 
@@ -80,7 +71,7 @@ while game_on:
     # bull index 0 cow index 1
     bulls_cows = [0, 0]
 
-    if check_number(user_number) == None:
+    if check_number(user_number_str) == None:
 
         for n, i in zip(number_str, user_number_str):
 
@@ -96,20 +87,20 @@ while game_on:
 
     if bulls_cows[0] == 1 or bulls_cows[1] == 1:
         print('bull')
-    
+        
     elif bulls_cows[0] > 1 and not 3 or bulls_cows[1] > 1 and not 3:
         print('bulls')
-    
+        
     elif bulls_cows[0] == 4 and bulls_cows[1] == 0:
         print('good job')
         game_on = False
  
 
-else:
-    # avoid print None
-    if check_number(user_number) == None:
-        pass
-    
     else:
-        print(check_number(user_number))
-        game_on = False
+        # avoid print None
+        if check_number(user_number) == None:
+            pass
+    
+        else:
+            print(check_number(user_number))
+            game_on = False
