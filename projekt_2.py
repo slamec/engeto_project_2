@@ -6,9 +6,10 @@ discord: Miro#8969
 
 """
 
+from itertools import count
 from os import dup
 import random
- 
+import re 
 
 lines = 50 * '-'
 
@@ -27,6 +28,9 @@ print(lines)
 
 
 def check_number(number):
+    """Check if the input has all of the atributes needed, no duplicates, no 0 in 
+    the be beginning etc."""
+    
     # check if does not start with zero
     if number.startswith('0'):
         return 'Number can\'t start with 0.'
@@ -58,39 +62,24 @@ while game_on:
 
     print(lines)
 
-    # guessed place and number
-    bull = 0 
-    bulls = 0 
+    # bull index 0 cow index 1
+    bulls_cows = [0, 0]
 
-    # guessed number
-    cow = 0
-    cows = 0
-    
-    # check if the inserted number is correct
-    if check_number(user_number) == None: 
-        
-        if user_number_str[0] == number_str[0]:
+    if check_number(user_number) == None:
+
+        for n, i in zip(number_str, user_number_str):
+
+            if i in number_str:
+
+                if i == n:
+                    bulls_cows[0] += 1
             
-            bull += 1
+                else:
+                    bulls_cows[1] += 1
 
-            if user_number_str[1] == number_str[1]:
+        
+    print(bulls_cows)
 
-                bull += 1
-
-                bulls = bull 
-
-            elif user_number_str[2] == number_str[2]:
-
-                bulls += 1 
-
-            elif user_number_str[3] == number_str[3]:
-
-                bulls += 1 
-
-
-    
-        print(f'bull{bull}, bulls{bulls}')
-
-    else:
-        print(check_number(user_number))
-        game_on = False
+else:
+    print(check_number(user_number))
+    game_on = False
