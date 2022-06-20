@@ -97,11 +97,10 @@ while game_on:
     if bulls_cows[0] == 1 or bulls_cows[1] == 1:
         print('bull')
     
-    elif bulls_cows[0] > 1 or bulls_cows[1] > 1 and not bulls_cows[0] == 4 and not bulls_cows[1] == 4:
+    elif bulls_cows[0] > 1 and not 3 or bulls_cows[1] > 1 and not 3:
         print('bulls')
     
-    
-    else:
+    elif bulls_cows[0] == 4 and bulls_cows[1] == 0:
         print('good job')
         game_on = False
  
