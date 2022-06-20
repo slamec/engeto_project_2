@@ -15,8 +15,21 @@ lines = 50 * '-'
 
 game_on = True
 
-number = random.sample(range(10), 4)
-number_str = ''.join(map(str, number))
+def generate_number():
+    """Generate random 4 digit number"""
+    number = random.sample(range(10), 4)
+
+    return number
+
+# stills returns 0
+while generate_number()[0] != 0:
+
+    number_str = ''.join(map(str, generate_number()))
+
+else:
+    generate_number()
+
+quesses = 0 
 
 print(number_str) # control needs to be deleted
 
@@ -30,7 +43,7 @@ print(lines)
 def check_number(number):
     """Check if the input has all of the atributes needed, no duplicates, no 0 in 
     the be beginning etc."""
-    
+
     # check if does not start with zero
     if number.startswith('0'):
         return 'Number can\'t start with 0.'
@@ -60,6 +73,8 @@ while game_on:
     user_number = input('Enter the number: ')
     user_number_str = str(user_number)
 
+    quesses += 1
+
     print(lines)
 
     # bull index 0 cow index 1
@@ -76,10 +91,26 @@ while game_on:
             
                 else:
                     bulls_cows[1] += 1
-
-        
+    
     print(bulls_cows)
 
+    if bulls_cows[0] == 1 or bulls_cows[1] == 1:
+        print('bull')
+    
+    elif bulls_cows[0] > 1 or bulls_cows[1] > 1 and not bulls_cows[0] == 4 and not bulls_cows[1] == 4:
+        print('bulls')
+    
+    
+    else:
+        print('good job')
+        game_on = False
+ 
+
 else:
-    print(check_number(user_number))
-    game_on = False
+    # avoid print None
+    if check_number(user_number) == None:
+        pass
+    
+    else:
+        print(check_number(user_number))
+        game_on = False
