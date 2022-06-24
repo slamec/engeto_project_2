@@ -6,20 +6,11 @@ discord: Miro#8969
 
 """
 
+from ast import main
+from asyncio import run
 import random
 
 lines = 50 * '-'
-game_on = True
-number = [0]
-quesses = 0 
-
-# avoid zero on the beginning
-while number[0] == 0:
-    number = random.sample(range(10), 4)
-
-number_str = ''.join(map(str, number))
-
-print(number_str) # control needs to be deleted
 
 print('Hi there!')
 print(lines)
@@ -66,48 +57,72 @@ def check_number(number):
     else:
         return 'Number can\'t contain duplicates.'
 
-while game_on:
+def run_game():
+    game_on = True
+    guesses = 0 
 
-    user_number = input('Enter the number: ')
-    user_number_str = str(user_number)
+    number = [0]
 
-    quesses += 1
+    # avoid zero on the beginning
+    while number[0] == 0:
+        number = random.sample(range(10), 4)
 
-    print(lines)
+        number_str = ''.join(map(str, number))
+    
+    #print(number_str) # testing needs to be deleted
 
-    # bull index 0 cow index 1
-    bulls_cows = [0, 0]
+    while game_on:
 
-    if check_number(user_number_str) == None:
+        user_number = input('Enter the number: ')
+        user_number_str = str(user_number)
 
-        for n, i in zip(number_str, user_number_str):
+        guesses += 1
 
-            if i in number_str:
+        print(lines)
 
-                if i == n:
-                    bulls_cows[0] += 1
+        # bull index 0 cow index 1
+        bulls_cows = [0, 0]
+
+        if check_number(user_number_str) == None:
+
+            for n, i in zip(number_str, user_number_str):
+
+                if i in number_str:
+
+                    if i == n:
+                        bulls_cows[0] += 1
+                
+                    else:
+                        bulls_cows[1] += 1
+        
+            # print(bulls_cows) # for testing purposes
+
+            if bulls_cows[0] <= 1 and bulls_cows[1] <= 1:
+                print(f'You have {bulls_cows[0]} bull and {bulls_cows[1]} cow.')
+
+            elif bulls_cows[0] < 4 and bulls_cows[1] < 4:
+                print(f'You have {bulls_cows[0]} bulls and {bulls_cows[1]} cows.')
             
-                else:
-                    bulls_cows[1] += 1
-    
-    print(bulls_cows)
+            elif bulls_cows[0] == 4 and bulls_cows[1] == 0:
+                print(f'Good job, you have guessed the right number in {guesses} guesses!')
+                
+                game_on = False
 
-    if bulls_cows[0] == 1 or bulls_cows[1] == 1:
-        print('bull')
-        
-    elif bulls_cows[0] > 1 and not 3 or bulls_cows[1] > 1 and not 3:
-        print('bulls')
-        
-    elif bulls_cows[0] == 4 and bulls_cows[1] == 0:
-        print('good job')
-        game_on = False
- 
-
-    else:
-        # avoid print None
-        if check_number(user_number) == None:
-            pass
-    
         else:
-            print(check_number(user_number))
-            game_on = False
+            # avoid print None
+            if check_number(user_number) == None:
+                pass
+        
+            else:
+                print(check_number(user_number))
+                game_on = False
+
+run_game()
+
+play_again = input('Do you wanna play again? Yes/No ').lower()
+
+if play_again == 'yes':
+    run_game()
+
+else:
+    print('See you next time.')
