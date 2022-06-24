@@ -6,22 +6,18 @@ discord: Miro#8969
 
 """
 
-
 import random
 
 lines = 50 * '-'
-
 game_on = True
-
 number = [0]
+quesses = 0 
 
 # avoid zero on the beginning
 while number[0] == 0:
     number = random.sample(range(10), 4)
 
 number_str = ''.join(map(str, number))
-
-quesses = 0 
 
 print(number_str) # control needs to be deleted
 
@@ -31,7 +27,6 @@ print('I\'ve generated a random 4 digit number for you.')
 print('Let\'s play a bulls and cows game.')
 print(lines)
 
-
 def check_number(number):
     """Check if the input has all of the atributes needed, no duplicates, no 0 in 
     the be beginning etc."""
@@ -40,10 +35,20 @@ def check_number(number):
     if number.startswith('0'):
         return 'Number can\'t start with 0.'
 
-    # check if user number has 4 digit
+    if number.isalpha():
+        return 'Number can\'t be a letter.'
 
-    if int(number) not in range(1111, 9999):
-        return 'Number must have 4 digits.'
+    if number == '':
+        return 'You did not insert anything.'
+    
+    try:
+
+        # check if user number has 4 digit
+        if int(number) not in range(1111, 9999):
+            return 'Number must have 4 digits.'
+    
+    except:
+        return 'Wrong number format. Number has to have 4 digits.'
 
     # check for duplicates
     duplicates = []
