@@ -134,7 +134,6 @@ def run_game():
                 pass
         
             else:
-                print(check_number(user_number))
                 game_on = False
 
 # run the game
