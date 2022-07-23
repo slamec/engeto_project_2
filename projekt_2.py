@@ -6,7 +6,6 @@ discord: Miro#8969
 """
 
 import random
-from tkinter.tix import Tree
 
 lines = 50 * '-'
 
