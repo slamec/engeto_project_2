@@ -61,7 +61,7 @@ def check_number(number):
 
 def run_game():
     """
-    Main game function including random number generation and game loop. 
+    Game function including random number generation and game loop. 
     Does not accept any parameters.
     """
 
