@@ -13,7 +13,17 @@ lines = 50 * '-'
 print('Hi there!')
 print(lines)
 print('I\'ve generated a random 4 digit number for you.')
-print('Let\'s play a bulls and cows game.')
+print('')
+print('Simple rules:')
+print(
+    """
+    Bulls and Cows is a 2 player game. Computer thinks of a number, while the other player tries to guess it. 
+    The number to be guessed must be a 4 digit number, using only digits from 1 - 9, 
+    each digit atmost once. e.g. 1234 is valid, 0123 is not valid, 9877 is not valid, 9876 is valid
+    """
+)
+print('')
+print('If you are ready let\'s play a bulls and cows game.')
 print(lines)
 
 def check_number(number):
@@ -60,12 +70,12 @@ def check_number(number):
     else:
         return 'Number can\'t contain duplicates.'
 
-# Returns list of digits of a number
+# returns list of digits of a number
 def get_digits(num):
     return [int(i) for i in str(num)]
       
   
-# Returns True if number has no duplicate digits otherwise False      
+# returns True if number has no duplicate digits otherwise False      
 def no_duplicates(num):
     num_li = get_digits(num)
     if len(num_li) == len(set(num_li)):
@@ -92,17 +102,10 @@ def run_game():
 
     game_on = True
     guesses = 0 
-
-
-    number_str = generate_number()
-
-    # generate random 4 digit number and avoid zero at the beginning
-    # while number[0] == 0:
-    #     number = random.sample(range(10), 4)
-
-    #     number_str = ''.join(map(str, number))
+    number_str = str(generate_number())
     
-    print(number_str) # testing - reveal the generated number 
+    # testing - reveal the generated number
+    # print(number_str)  
 
     # game loop 
     while game_on:
@@ -136,8 +139,16 @@ def run_game():
             # only one number or place guessed
             if bulls_cows[0] <= 1 and bulls_cows[1] <= 1:
                 print(f'You have {bulls_cows[0]} bull and {bulls_cows[1]} cow.')
+            
+            # more bulls one cow
+            elif bulls_cows[0] < 4 and bulls_cows[1] <= 1:
+                print(f'You have {bulls_cows[0]} bulls and {bulls_cows[1]} cow.')
 
-            # more places and numbers gussed 
+            # one bull more cows
+            elif bulls_cows[0] <= 1 and bulls_cows[1] < 4:
+                print(f'You have {bulls_cows[0]} bull and {bulls_cows[1]} cows.')
+
+            # more places and numbers guessed 
             elif bulls_cows[0] < 4 and bulls_cows[1] < 4:
                 print(f'You have {bulls_cows[0]} bulls and {bulls_cows[1]} cows.')
             
@@ -160,6 +171,8 @@ def run_game():
                 pass
         
             else:
+                # print error messages to the user
+                print(check_number(user_number_str))
                 game_on = False
 
 # run the game
