@@ -6,6 +6,7 @@ discord: Miro#8969
 """
 
 import random
+from tkinter.tix import Tree
 
 lines = 50 * '-'
 
@@ -59,6 +60,30 @@ def check_number(number):
     else:
         return 'Number can\'t contain duplicates.'
 
+# Returns list of digits of a number
+def get_digits(num):
+    return [int(i) for i in str(num)]
+      
+  
+# Returns True if number has no duplicate digits otherwise False      
+def no_duplicates(num):
+    num_li = get_digits(num)
+    if len(num_li) == len(set(num_li)):
+        return True
+    else:
+        return False
+  
+  
+# Generates a 4 digit number 
+# with no repeated digits    
+def generate_number():
+    while True:
+        num = random.randint(1000,9999)
+        if no_duplicates(num):
+            return num
+        
+
+
 def run_game():
     """
     Game function including random number generation and game loop. 
@@ -68,15 +93,16 @@ def run_game():
     game_on = True
     guesses = 0 
 
-    number = [0]
+
+    number_str = generate_number()
 
     # generate random 4 digit number and avoid zero at the beginning
-    while number[0] == 0:
-        number = random.sample(range(10), 4)
+    # while number[0] == 0:
+    #     number = random.sample(range(10), 4)
 
-        number_str = ''.join(map(str, number))
+    #     number_str = ''.join(map(str, number))
     
-    # print(number_str) # testing - reveal the generated number 
+    print(number_str) # testing - reveal the generated number 
 
     # game loop 
     while game_on:
